@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+    <title>Japanese Learning System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Setup Screen -->
+    <div id="setupScreen" class="screen active">
+        <div class="container">
+            <div class="header-section">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="logo-text">
+                        <h1>NIHONGO</h1>
+                        <span class="logo-subtitle">Learning System</span>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>SYSTEM READY</span>
+                </div>
+            </div>
+
+            <div class="setup-panel">
+                <div class="panel-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>CONFIGURATION</h2>
+                </div>
+
+                <div class="config-section">
+                    <label class="config-label">SELECT LESSONS</label>
+                    <div class="lesson-selector">
+                        <button class="lesson-btn" data-lesson="9">
+                            <span class="lesson-number">09</span>
+                            <span class="lesson-count" id="count-9">0 words</span>
+                        </button>
+                        <button class="lesson-btn" data-lesson="10">
+                            <span class="lesson-number">10</span>
+                            <span class="lesson-count" id="count-10">0 words</span>
+                        </button>
+                        <button class="lesson-btn" data-lesson="11">
+                            <span class="lesson-number">11</span>
+                            <span class="lesson-count" id="count-11">0 words</span>
+                        </button>
+                        <button class="lesson-btn lesson-all" data-lesson="all">
+                            <span class="lesson-number">ALL</span>
+                            <span class="lesson-count" id="count-all">0 words</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <label class="config-label">MODE SELECTION</label>
+                    <div class="mode-selector">
+                        <button class="mode-btn" data-mode="review">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>REVIEW MODE</span>
+                            <span class="mode-desc">Browse vocabulary list</span>
+                        </button>
+                        <button class="mode-btn" data-mode="exam">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>EXAM MODE</span>
+                            <span class="mode-desc">Test your knowledge</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="examConfig" class="exam-config hidden">
+                    <div class="config-row">
+                        <div class="config-group">
+                            <label class="config-label">EXAM TYPE</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="examType" value="quiz" checked>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label">Quiz</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="examType" value="essay">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label">Essay</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="examType" value="mix">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label">Mix</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="config-group">
+                            <label class="config-label">TIME LIMIT (minutes)</label>
+                            <input type="number" id="timeLimit" class="time-input" value="10" min="1" max="120">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="startBtn" class="start-btn" disabled>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span>INITIALIZE SYSTEM</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Screen -->
+    <div id="reviewScreen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <button class="back-btn" onclick="app.backToSetup()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    BACK
+                </button>
+                <h2>REVIEW MODE</h2>
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search vocabulary...">
+                </div>
+            </div>
+            <div id="reviewContent" class="review-grid"></div>
+        </div>
+    </div>
+
+    <!-- Exam Screen -->
+    <div id="examScreen" class="screen">
+        <div class="exam-header">
+            <div class="exam-info">
+                <span class="question-counter"><span id="currentQ">1</span> / <span id="totalQ">0</span></span>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+            <div class="timer-display">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="timerText">00:00</span>
+            </div>
+        </div>
+
+        <div class="exam-container">
+            <div class="question-card">
+                <div class="question-type" id="questionType">QUIZ</div>
+                <div class="question-text" id="questionText"></div>
+                <div id="answerContainer"></div>
+            </div>
+
+            <div class="exam-controls">
+                <button id="prevBtn" class="nav-btn" onclick="app.prevQuestion()" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    PREVIOUS
+                </button>
+                <button id="nextBtn" class="nav-btn primary" onclick="app.nextQuestion()">
+                    NEXT
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button id="submitBtn" class="submit-btn" onclick="app.submitExam()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    SUBMIT EXAM
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="resultScreen" class="screen">
+        <div class="container">
+            <div class="result-card">
+                <div class="result-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h2>EXAM COMPLETED</h2>
+                <div class="result-score" id="resultScore">0</div>
+                <div class="result-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">ACCURACY</span>
+                        <span class="stat-value" id="resultAccuracy">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">CORRECT</span>
+                        <span class="stat-value" id="resultCorrect">0/0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">TIME</span>
+                        <span class="stat-value" id="resultTime">00:00</span>
+                    </div>
+                </div>
+                
+                <div class="wrong-answers" id="wrongAnswersList"></div>
+                
+                <div class="result-actions">
+                    <button class="result-btn" onclick="app.backToSetup()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        HOME
+                    </button>
+                    <button class="result-btn primary" onclick="app.retryExam()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        RETRY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
