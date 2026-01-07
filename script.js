@@ -183,7 +183,7 @@ function calculateGrades() {
     // Cuối kỳ chiếm 30% = 3.0 điểm tối đa
     const finalExamWeight = 0.3;
     
-    const passScore = 5.0;
+    const passScore = 4.0;
     const gradeBScore = 7.0;
     const gradeAScore = 8.5;
     
