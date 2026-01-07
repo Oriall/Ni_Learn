@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Máy Tính Điểm Cuối Kỳ</title>
-    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
     <div class="container">
         <!-- Header -->
@@ -20,6 +17,95 @@
             </div>
             <p class="subtitle">Tính toán điểm cần thiết để đạt mục tiêu của bạn</p>
         </header>
+
+        <!-- Help Button -->
+        <div class="help-button-wrapper">
+            <button id="help-btn" class="help-btn">
+                <i class="fas fa-question-circle"></i>
+                Hướng dẫn cách tính điểm
+            </button>
+        </div>
+
+        <!-- Help Modal -->
+        <div id="help-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>
+                        <i class="fas fa-book"></i>
+                        Cơ Cấu Điểm & Cách Tính
+                    </h2>
+                    <button id="close-modal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="./img/diem.jpg" alt="Bảng điểm" class="grade-table-img" id="grade-table-img">
+                    
+                    <div class="explanation">
+                        <h3><i class="fas fa-info-circle"></i> Chi tiết cách tính:</h3>
+                        
+                        <div class="calc-section">
+                            <h4><i class="fas fa-user-check"></i> Chuyên cần (10%)</h4>
+                            <p>Tỉ lệ chuyên cần 90% trở lên được tính là 10%</p>
+                            <div class="formula">Điểm = 1.0 điểm (nếu đạt ≥90% chuyên cần)</div>
+                        </div>
+
+                        <div class="calc-section">
+                            <h4><i class="fas fa-chalkboard-teacher"></i> Điểm trên lớp (30%)</h4>
+                            <p><strong>a) Minitest (20%):</strong></p>
+                            <ul>
+                                <li>Tách điểm thang 20 và thang 30</li>
+                                <li>Ví dụ: 114/140 (thang 20) + 115/150 (thang 30) = 229/290</li>
+                                <li>Phần trăm: 229/290 = 78.97%</li>
+                                <li>Quy về thang 10: 78.97% × 10 = 7.90/10</li>
+                                <li>Quy về 20%: 7.90 × 20% = <strong>1.58 điểm</strong></li>
+                            </ul>
+                            
+                            <p><strong>b) Bài tập về nhà (10%):</strong></p>
+                            <ul>
+                                <li>Full điểm BTVN = <strong>1.0 điểm</strong></li>
+                            </ul>
+                            
+                            <div class="formula">Điểm trên lớp = 1.58 + 1.0 = 2.58/3.0</div>
+                        </div>
+
+                        <div class="calc-section">
+                            <h4><i class="fas fa-file-alt"></i> Kamatsu - Giữa kỳ (30%)</h4>
+                            <ul>
+                                <li>Trung bình các bài Kamatsu</li>
+                                <li>Ví dụ: (96 + 73 + 67) / 3 = 78.67/100</li>
+                                <li>Quy về thang 10: 78.67% × 10 = 7.87/10</li>
+                                <li>Quy về 30%: 7.87 × 30% = <strong>2.36 điểm</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="calc-section">
+                            <h4><i class="fas fa-clipboard-check"></i> Điểm cuối kỳ (30%)</h4>
+                            <p>Chỉ được phép nghỉ tối đa <strong>12 buổi (A+UA)</strong> hoặc tối đa <strong>4 buổi không phép (UA)</strong>.</p>
+                            <p>Nếu vượt quá <i class="fas fa-arrow-right"></i> <strong>không được tham gia thi cuối kỳ</strong></p>
+                        </div>
+
+                        <div class="calc-section total">
+                            <h4><i class="fas fa-calculator"></i> TỔNG ĐIỂM</h4>
+                            <div class="formula">
+                                Tổng = Chuyên cần + Trên lớp + Kamatsu + Cuối kỳ<br>
+                                = 1.0 + 2.58 + 2.36 + (Điểm CK × 30%)<br>
+                                = <strong>5.94 + (Điểm CK × 0.3)</strong>
+                            </div>
+                        </div>
+
+                        <div class="calc-section">
+                            <h4><i class="fas fa-flag-checkered"></i> Mục tiêu điểm:</h4>
+                            <ul>
+                                <li><i class="fas fa-check-circle text-green"></i> <strong>Qua môn:</strong> ≥ 5.0 điểm</li>
+                                <li><i class="fas fa-star text-blue"></i> <strong>Điểm B:</strong> ≥ 7.0 điểm</li>
+                                <li><i class="fas fa-trophy text-yellow"></i> <strong>Điểm A:</strong> ≥ 8.5 điểm</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Grading System Info -->
         <section class="grading-system">
@@ -37,11 +123,15 @@
                     <div class="grade-label">Minitest</div>
                 </div>
                 <div class="grade-card">
+                    <div class="grade-percent purple">10%</div>
+                    <div class="grade-label">BTVN</div>
+                </div>
+                <div class="grade-card">
                     <div class="grade-percent yellow">30%</div>
                     <div class="grade-label">Kamatsu</div>
                 </div>
                 <div class="grade-card">
-                    <div class="grade-percent purple">30%</div>
+                    <div class="grade-percent orange">30%</div>
                     <div class="grade-label">Cuối kỳ</div>
                 </div>
             </div>
@@ -53,18 +143,26 @@
                 <!-- Minitest Input -->
                 <div class="input-card">
                     <label class="input-label blue">
+                        <i class="fas fa-edit"></i>
                         Điểm Minitest (mỗi điểm một dòng)
                     </label>
-                    <textarea id="minitest-input" placeholder="16/20&#10;20/20&#10;13/20&#10;27/30&#10;..."></textarea>
+                    <textarea 
+                        id="minitest-input" 
+                        placeholder="16/20&#10;20/20&#10;13/20&#10;27/30&#10;..."
+                    ></textarea>
                     <p class="input-hint">Ví dụ: 16/20, 20/20, 27/30</p>
                 </div>
 
                 <!-- Kamatsu Input -->
                 <div class="input-card">
                     <label class="input-label yellow">
+                        <i class="fas fa-file-signature"></i>
                         Điểm Kamatsu (mỗi điểm một dòng)
                     </label>
-                    <textarea id="kamatsu-input" placeholder="96/100&#10;73/100&#10;67/100&#10;..."></textarea>
+                    <textarea 
+                        id="kamatsu-input" 
+                        placeholder="96/100&#10;73/100&#10;67/100&#10;..."
+                    ></textarea>
                     <p class="input-hint">Ví dụ: 96/100, 73/100</p>
                 </div>
             </div>
@@ -153,8 +251,7 @@
                 <i class="fas fa-info-circle"></i>
                 <div>
                     <p class="note-title">Lưu ý:</p>
-                    <p>Điểm chuyên cần đã được tính là 10/10 (100%). Kết quả trên giả định bạn đạt full điểm chuyên cần
-                        và điểm bài tập về nhà.</p>
+                    <p>Điểm chuyên cần đã được tính là 10/10 (100%). Kết quả trên giả định bạn đạt full điểm chuyên cần và điểm bài tập về nhà.</p>
                 </div>
             </div>
         </div>
@@ -168,5 +265,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>

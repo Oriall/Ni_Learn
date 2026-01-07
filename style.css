@@ -21,7 +21,7 @@ body {
 /* Header */
 .header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .header-content {
@@ -51,6 +51,195 @@ h1 {
     font-size: 1.1rem;
 }
 
+/* Help Button */
+.help-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.help-btn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.help-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 1rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #374151;
+    position: sticky;
+    top: 0;
+    background: #1f2937;
+    z-index: 10;
+}
+
+.modal-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    color: #a78bfa;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #f87171;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.grade-table-img {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    border: 2px solid #374151;
+}
+
+.explanation {
+    color: #d1d5db;
+}
+
+.explanation h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+    color: #60a5fa;
+    margin-bottom: 1.5rem;
+}
+
+.calc-section {
+    background: rgba(55, 65, 81, 0.3);
+    border-left: 4px solid #60a5fa;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.calc-section.total {
+    border-left-color: #34d399;
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.calc-section h4 {
+    color: #fbbf24;
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.calc-section ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.calc-section li {
+    margin-bottom: 0.5rem;
+    color: #d1d5db;
+}
+
+.text-green {
+    color: #34d399;
+}
+
+.text-blue {
+    color: #60a5fa;
+}
+
+.text-yellow {
+    color: #fbbf24;
+}
+
+.formula {
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+    color: #34d399;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
 /* Section Title */
 .section-title {
     display: flex;
@@ -77,7 +266,7 @@ h1 {
 
 .grade-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 1rem;
 }
 
@@ -98,6 +287,7 @@ h1 {
 .grade-percent.green { color: #34d399; }
 .grade-percent.yellow { color: #fbbf24; }
 .grade-percent.purple { color: #a78bfa; }
+.grade-percent.orange { color: #fb923c; }
 
 .grade-label {
     color: #9ca3af;
@@ -124,7 +314,9 @@ h1 {
 }
 
 .input-label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
@@ -415,5 +607,13 @@ textarea::placeholder {
 
     .required-score {
         align-self: flex-end;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-header {
+        padding: 1rem 1.5rem;
     }
 }

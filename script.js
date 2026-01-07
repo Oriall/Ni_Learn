@@ -6,6 +6,12 @@ const resultsDiv = document.getElementById('results');
 const errorDiv = document.getElementById('error');
 const errorText = document.getElementById('error-text');
 
+// Modal elements
+const helpBtn = document.getElementById('help-btn');
+const helpModal = document.getElementById('help-modal');
+const closeModalBtn = document.getElementById('close-modal');
+const gradeTableImg = document.getElementById('grade-table-img');
+
 // Result elements
 const avgMinitestEl = document.getElementById('avg-minitest');
 const minitestPercentEl = document.getElementById('minitest-percent');
@@ -20,6 +26,29 @@ const aScoreEl = document.getElementById('a-score');
 const passIconEl = document.getElementById('pass-icon');
 const bIconEl = document.getElementById('b-icon');
 const aIconEl = document.getElementById('a-icon');
+
+// Modal functions
+helpBtn.addEventListener('click', function() {
+    helpModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+});
+
+closeModalBtn.addEventListener('click', function() {
+    helpModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+});
+
+helpModal.addEventListener('click', function(e) {
+    if (e.target === helpModal) {
+        helpModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Image upload for grade table
+gradeTableImg.addEventListener('error', function() {
+    this.style.display = 'none';
+});
 
 // Parse score input (e.g., "16/20" or "96/100")
 function parseScore(scoreStr) {
@@ -210,6 +239,11 @@ function calculateGrades() {
     
     // Show results
     resultsDiv.classList.remove('hidden');
+    
+    // Scroll to results
+    setTimeout(() => {
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
 }
 
 // Event listener
