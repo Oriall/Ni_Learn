@@ -26,6 +26,49 @@
             </button>
         </div>
 
+        <!-- Welcome/Warning Modal (Separate from help modal) -->
+        <div id="welcome-modal" class="welcome-modal-overlay">
+            <div class="welcome-modal-box">
+                <div class="welcome-modal-header">
+                    <h2>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Lưu Ý Quan Trọng
+                    </h2>
+                </div>
+                <div class="welcome-modal-body">
+                    <div class="warning-content">
+                        <div class="warning-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="warning-text">
+                            <h3>Cách tính điểm dựa trên bảng slide trong Google Drive</h3>
+                            <p>Công cụ này chỉ mang tính chất <strong>tham khảo</strong>. Có thể sẽ có những sai lệch nhỏ khi so với điểm tổng kết chính thức do:</p>
+                            <ul>
+                                <li><i class="fas fa-chevron-right"></i> Cách làm tròn điểm của hệ thống</li>
+                                <li><i class="fas fa-chevron-right"></i> Điều chỉnh điểm từ giảng viên</li>
+                                <li><i class="fas fa-chevron-right"></i> Các yếu tố đánh giá khác chưa được tính</li>
+                            </ul>
+                            <p class="drive-link">
+                                <i class="fas fa-link"></i> 
+                                Tham khảo bảng điểm gốc: 
+                                <a href="https://drive.google.com/file/d/1cC-34fjkioRAOEYgHqeM6VqQIFEBRgT_/view" target="_blank" rel="noopener">
+                                    Google Drive Slide
+                                </a>
+                            </p>
+                            <p class="note-text">
+                                <i class="fas fa-lightbulb"></i>
+                                Kết quả từ công cụ này giúp bạn ước tính điểm cần đạt, nhưng vui lòng kiểm tra điểm chính thức từ giảng viên.
+                            </p>
+                        </div>
+                    </div>
+                    <button id="understand-btn" class="understand-btn" onclick="hieu()">
+                        <i class="fas fa-check"></i>
+                        Tôi đã hiểu
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Help Modal -->
         <div id="help-modal" class="modal hidden">
             <div class="modal-content">
@@ -54,11 +97,11 @@
                             <h4><i class="fas fa-chalkboard-teacher"></i> Điểm trên lớp (30%)</h4>
                             <p><strong>a) Minitest (20%):</strong></p>
                             <ul>
-                                <li>Tách điểm thang 20 và thang 30</li>
-                                <li>Ví dụ: 114/140 (thang 20) + 115/150 (thang 30) = 229/290</li>
-                                <li>Phần trăm: 229/290 = 78.97%</li>
-                                <li>Quy về thang 10: 78.97% × 10 = 7.90/10</li>
-                                <li>Quy về 20%: 7.90 × 20% = <strong>1.58 điểm</strong></li>
+                                <li>Quy mỗi bài về thang 10</li>
+                                <li>Ví dụ nhóm 20: 16/20 = 8.0, 20/20 = 10.0, 13/20 = 6.5, ...</li>
+                                <li>Ví dụ nhóm 30: 27/30 = 9.0, 18/30 = 6.0, 28/30 = 9.33, ...</li>
+                                <li>Tính trung bình: (8.0 + 10.0 + 6.5 + ... + 9.33) / 12 = 7.94/10</li>
+                                <li>Quy về 20%: 7.94 × 20% = <strong>1.59 điểm</strong></li>
                             </ul>
                             
                             <p><strong>b) Bài tập về nhà (10%):</strong></p>
@@ -66,7 +109,7 @@
                                 <li>Full điểm BTVN = <strong>1.0 điểm</strong></li>
                             </ul>
                             
-                            <div class="formula">Điểm trên lớp = 1.58 + 1.0 = 2.58/3.0</div>
+                            <div class="formula">Điểm trên lớp = 1.59 + 1.0 = 2.59/3.0</div>
                         </div>
 
                         <div class="calc-section">
@@ -89,8 +132,8 @@
                             <h4><i class="fas fa-calculator"></i> TỔNG ĐIỂM</h4>
                             <div class="formula">
                                 Tổng = Chuyên cần + Trên lớp + Kamatsu + Cuối kỳ<br>
-                                = 1.0 + 2.58 + 2.36 + (Điểm CK × 30%)<br>
-                                = <strong>5.94 + (Điểm CK × 0.3)</strong>
+                                = 1.0 + 2.59 + 2.36 + (Điểm CK × 30%)<br>
+                                = <strong>5.95 + (Điểm CK × 0.3)</strong>
                             </div>
                         </div>
 

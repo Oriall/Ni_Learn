@@ -26,6 +26,11 @@ const aScoreEl = document.getElementById('a-score');
 const passIconEl = document.getElementById('pass-icon');
 const bIconEl = document.getElementById('b-icon');
 const aIconEl = document.getElementById('a-icon');
+function hieu(){
+    const welcomeModal = document.getElementById('welcome-modal');
+    welcomeModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
 // Modal functions
 helpBtn.addEventListener('click', function() {
@@ -127,34 +132,19 @@ function calculateGrades() {
         return;
     }
     
-    // TÍNH MINITEST - Tách riêng thang 20 và thang 30
-    let totalScore20 = 0;
-    let maxScore20 = 0;
-    let totalScore30 = 0;
-    let maxScore30 = 0;
-    
-    minitestScores.forEach(item => {
-        if (item.max === 20) {
-            totalScore20 += item.score;
-            maxScore20 += item.max;
-        } else if (item.max === 30) {
-            totalScore30 += item.score;
-            maxScore30 += item.max;
-        }
+    // TÍNH MINITEST - Quy mỗi bài về thang 10, sau đó tính trung bình
+    const minitestScoresOn10 = minitestScores.map(item => {
+        // Quy về thang 10: (điểm / max) * 10
+        return (item.score / item.max) * 10;
     });
     
-    // Tổng điểm minitest
-    const totalMinitestScore = totalScore20 + totalScore30;
-    const totalMinitestMax = maxScore20 + maxScore30;
-    
-    // Phần trăm minitest
-    const minitestPercent = totalMinitestMax > 0 ? (totalMinitestScore / totalMinitestMax) * 100 : 0;
-    
-    // Quy về thang 10
-    const minitestOn10 = minitestPercent / 10;
+    // Tính trung bình các bài minitest (đã quy về thang 10)
+    const avgMinitestOn10 = minitestScoresOn10.length > 0 
+        ? minitestScoresOn10.reduce((sum, score) => sum + score, 0) / minitestScoresOn10.length 
+        : 0;
     
     // Quy về 20% (trọng số minitest)
-    const minitestWeighted = minitestOn10 * 0.2;
+    const minitestWeighted = avgMinitestOn10 * 0.2;
     
     // TÍNH KAMATSU
     const totalKamatsuScore = kamatsuScores.reduce((sum, item) => sum + item.score, 0);
@@ -173,7 +163,7 @@ function calculateGrades() {
     // TÍNH ĐIỂM TRÊN LỚP (30%)
     // Minitest (20%) + BTVN (10%)
     const btvnWeighted = 1.0; // Full điểm BTVN = 1.0 (10% của tổng)
-    const classScore = minitestWeighted + btvnWeighted; // Tổng = 2.58 trong ví dụ
+    const classScore = minitestWeighted + btvnWeighted;
     
     // TÍNH TỔNG ĐIỂM HIỆN TẠI
     const chuyenCanScore = 1.0; // 10% chuyên cần (full)
@@ -192,9 +182,9 @@ function calculateGrades() {
     const requiredForA = Math.max(0, ((gradeAScore - currentScore) / finalExamWeight) * 10);
     
     // UPDATE UI
-    // Display minitest with breakdown
-    avgMinitestEl.textContent = `${totalMinitestScore.toFixed(0)}/${totalMinitestMax}`;
-    minitestPercentEl.textContent = `(${minitestPercent.toFixed(2)}% = ${minitestOn10.toFixed(2)}/10)`;
+    // Display minitest
+    avgMinitestEl.textContent = `${avgMinitestOn10.toFixed(2)}/10`;
+    minitestPercentEl.textContent = `(Trung bình ${minitestScores.length} bài)`;
     
     // Display kamatsu
     avgKamatsuEl.textContent = `${avgKamatsu.toFixed(2)}/100`;
