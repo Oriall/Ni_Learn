@@ -86,18 +86,18 @@ function parseScores(text) {
     return scores;
 }
 
-// Get color class based on score
+// Get color class based on score (thang 150)
 function getScoreColorClass(score) {
-    if (score <= 50) return 'score-green';
-    if (score <= 70) return 'score-yellow';
-    if (score <= 100) return 'score-orange';
+    if (score <= 75) return 'score-green';      // <= 50% của 150
+    if (score <= 105) return 'score-yellow';    // <= 70% của 150
+    if (score <= 150) return 'score-orange';    // <= 100% của 150
     return 'score-red';
 }
 
 function getIconColorClass(score) {
-    if (score <= 50) return 'icon-green';
-    if (score <= 70) return 'icon-yellow';
-    if (score <= 100) return 'icon-orange';
+    if (score <= 75) return 'icon-green';
+    if (score <= 105) return 'icon-yellow';
+    if (score <= 150) return 'icon-orange';
     return 'icon-red';
 }
 
@@ -177,9 +177,10 @@ function calculateGrades() {
     const gradeBScore = 7.0;
     const gradeAScore = 8.5;
     
-    const requiredToPass = Math.max(0, ((passScore - currentScore) / finalExamWeight) * 10);
-    const requiredForB = Math.max(0, ((gradeBScore - currentScore) / finalExamWeight) * 10);
-    const requiredForA = Math.max(0, ((gradeAScore - currentScore) / finalExamWeight) * 10);
+    // Điểm cuối kỳ trên thang 150
+    const requiredToPass = Math.max(0, ((passScore - currentScore) / finalExamWeight) * 15);
+    const requiredForB = Math.max(0, ((gradeBScore - currentScore) / finalExamWeight) * 15);
+    const requiredForA = Math.max(0, ((gradeAScore - currentScore) / finalExamWeight) * 15);
     
     // UPDATE UI
     // Display minitest
@@ -193,10 +194,10 @@ function calculateGrades() {
     // Display current score
     currentScoreEl.textContent = `${currentScore.toFixed(2)}/10`;
     
-    // Update required scores
-    passScoreEl.textContent = requiredToPass <= 0 ? 'ĐÃ ĐẠT' : `${requiredToPass.toFixed(1)}/100`;
-    bScoreEl.textContent = `${requiredForB.toFixed(1)}/100`;
-    aScoreEl.textContent = `${requiredForA.toFixed(1)}/100`;
+    // Update required scores (thang 150)
+    passScoreEl.textContent = requiredToPass <= 0 ? 'ĐÃ ĐẠT' : `${requiredToPass.toFixed(1)}/150`;
+    bScoreEl.textContent = `${requiredForB.toFixed(1)}/150`;
+    aScoreEl.textContent = `${requiredForA.toFixed(1)}/150`;
     
     // Update colors
     if (requiredToPass <= 0) {
@@ -216,14 +217,14 @@ function calculateGrades() {
     bIconEl.className = 'fas fa-check-circle ' + getIconColorClass(requiredForB);
     aIconEl.className = 'fas fa-check-circle ' + getIconColorClass(requiredForA);
     
-    // Change icon if impossible
-    if (requiredToPass > 100) {
+    // Change icon if impossible (thang 150)
+    if (requiredToPass > 150) {
         passIconEl.className = 'fas fa-exclamation-circle icon-red';
     }
-    if (requiredForB > 100) {
+    if (requiredForB > 150) {
         bIconEl.className = 'fas fa-exclamation-circle icon-red';
     }
-    if (requiredForA > 100) {
+    if (requiredForA > 150) {
         aIconEl.className = 'fas fa-exclamation-circle icon-red';
     }
     
